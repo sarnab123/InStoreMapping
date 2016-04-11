@@ -50,6 +50,7 @@ public class InStoreImageReader {
 				
 			}
 			//buffWriter.close();
+			bufImage.flush();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -64,8 +65,8 @@ public class InStoreImageReader {
 		InStoreImageReader imageReader = new InStoreImageReader();
 		imageReader.readImageAndGenerateGraph(matrixGraph, "./res/edged.jpg");
 		Path path = new Path();
-		//path.findAllPathRec(0, 0, matrixGraph.colorMatrix, 250, 250, new Stack<Node>());
-		
+		path.findAllPathRec(0, 0, matrixGraph.colorMatrix, 250, 250, new Stack<Node>());
+		System.out.println("Total no. of paths : " + path.pathsList.size());
 		
 	}
 }

@@ -47,7 +47,9 @@ public class Path {
 	}
 	
 	public void findAllPathRec(int xPos, int yPos, int[][] colorMatrix, int endX, int endY, Stack<Node> queue) {
-		if (xPos >= endX && yPos >= endY) {
+		if (xPos > endX || yPos > endY) {
+			return;
+		} else if (xPos == endX && yPos == endY) {
 			xPos = endX;
 			yPos = endY;
 			Stack<Node> finalStack = new Stack<Node>(); 
@@ -61,27 +63,28 @@ public class Path {
 			return;
 		} else if (colorMatrix[xPos][yPos] != -16777216) {
 			return; 
-		} 
+		}
+		
 		Node node = new Node();
 		node.xPos = xPos;
 		node.yPos = yPos;
 		node.colorValue = colorMatrix[xPos][yPos];
 		queue.push(node);
 		
-		if (xPos < endX) {
-			xPos = xPos + 1;
-			if (xPos <= endX) {
-				findAllPathRec(xPos, yPos, colorMatrix, endX, endY, queue);
-				} else {
-					xPos = endX;
-				}
-		}
-		yPos = yPos + 1;
+		
+		if (xPos <= endX) {
+			int newXPos = xPos + 10;
+			findAllPathRec(newXPos, yPos, colorMatrix, endX, endY, queue);
+		} 
 		if (yPos <= endY) {
-			findAllPathRec(xPos, yPos,  colorMatrix, endX, endY, queue);
-		} else {
-			yPos = endY;
+			int newYPos = yPos + 10;
+			findAllPathRec(xPos, newYPos,  colorMatrix, endX, endY, queue);
 		}
+//		if (xPos <= endX && yPos <= endY) {
+//			int newXPos = xPos + 10;
+//			int newYPos = yPos + 10;
+//			findAllPathRec(newXPos, newYPos,  colorMatrix, endX, endY, queue);
+//		}
 		queue.pop();
 	}
 }
