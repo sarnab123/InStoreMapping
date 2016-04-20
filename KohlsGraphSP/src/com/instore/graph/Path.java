@@ -1,7 +1,6 @@
 package com.instore.graph;
 
 import java.util.ArrayList;
-import java.util.Queue;
 import java.util.Stack;
 
 public class Path {
@@ -73,18 +72,18 @@ public class Path {
 		
 		
 		if (xPos <= endX) {
-			int newXPos = xPos + 10;
+			int newXPos = xPos + 50;
 			findAllPathRec(newXPos, yPos, colorMatrix, endX, endY, queue);
 		} 
 		if (yPos <= endY) {
-			int newYPos = yPos + 10;
+			int newYPos = yPos + 50;
 			findAllPathRec(xPos, newYPos,  colorMatrix, endX, endY, queue);
 		}
-//		if (xPos <= endX && yPos <= endY) {
-//			int newXPos = xPos + 10;
-//			int newYPos = yPos + 10;
-//			findAllPathRec(newXPos, newYPos,  colorMatrix, endX, endY, queue);
-//		}
+		if (xPos <= endX && yPos <= endY) {
+			int newXPos = xPos + 50;
+			int newYPos = yPos + 50;
+			findAllPathRec(newXPos, newYPos,  colorMatrix, endX, endY, queue);
+		}
 		queue.pop();
 	}
 }
